@@ -26,7 +26,7 @@
   </nav>
   <main>
     
-    <h1 style="margin-top: 0;" id="about">
+    <h1 id="about">
       1073A BATHURST ST
     </h1>
     
@@ -90,12 +90,12 @@
     
     
     <ul class="flex">
-      <li class="imgFlex">
-        <div>    
+      <li >
+        <div  style="display: flex; flex-direction: column; height: 100%;">    
           <h3>
             LOCATION      
           </h3>
-          <ul class="list">
+          <ul class="list imgFlex" style="display: block; padding-left: 4rem">
             
             <li>
               On Bathurst, just south of Dupont
@@ -188,13 +188,24 @@
       PHOTOS
     </h3>
     
+    <p>
+      Note: Dimensions below are approximate
+    </p>
+    <img src="assets/FP.png" alt="" style="border: 1px solid #1846c7; margin: 1rem 0 4rem 0">
     
+
+      <p class="flex" style="margin: 2rem 0 4rem 0;">
+        Click images for full size versions
+      </p>
     
     <ul class="grid">
       <li class="label">
         <h4>
           MAIN LANDING AND HALL:
         </h4>
+      </li>
+      <li>
+        <img src="assets/H-1.JPG" alt="">
       </li>
       <li>
         <img src="assets/H-2.JPG" alt="">
@@ -205,6 +216,10 @@
       <li>
         <img src="assets/H-4.JPG" alt="">
       </li>
+      <li>
+        <img src="assets/H-5.JPG" alt="">
+      </li>
+      
       <li class="label">
         <h4>
           BEDROOM 1:
@@ -222,12 +237,12 @@
       <li>
         <img src="assets/B1-4.JPG" alt="">
       </li>
+      
       <li class="label">
         <h4>
           BEDROOM 2:
         </h4>
       </li>
-      
       <li>
         <img src="assets/B2-1.JPG" alt="">
       </li>
@@ -240,17 +255,187 @@
       <li>
         <img src="assets/B2-4.JPG" alt="">
       </li>
-      <li>
-        <img src="assets/B2-4.JPG" alt="">
+      
+      <li class="label">
+        <h4>
+          KITCHEN:
+        </h4>
       </li>
+      <li>
+        <img src="assets/K-1.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/K-2.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/K-3.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/K-4.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/K-5.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/K-6.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/K-7.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/K-8.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/K-9.JPG" alt="">
+      </li>
+      
+      <li class="label">
+        <h4>
+          BATHROOM:
+        </h4>
+      </li>
+      <li>
+        <img src="assets/B-1.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/B-2.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/B-3.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/B-4.JPG" alt="">
+      </li>
+      
+      <li class="label">
+        <h4>
+          LIVING ROOM:
+        </h4>
+      </li>
+      <li>
+        <img src="assets/LR-1.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/LR-2.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/LR-3.JPG" alt="">
+      </li>
+      
+      <li class="label">
+        <h4>
+          SUNROOM:
+        </h4>
+      </li>
+      <li>
+        <img src="assets/SR-1.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/SR-2.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/SR-3.JPG" alt="">
+      </li>
+      
+      <li class="label">
+        <h4>
+          APARTMENT ENTRANCE:
+        </h4>
+      </li>
+      <li>
+        <img src="assets/F-1.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/F-2.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/F-3.JPG" alt="">
+      </li>
+      <li>
+        <img src="assets/E-1.JPG" alt="">
+      </li>
+      
+      
     </ul>
     
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-stage">
+        <button class="lightbox-close" id="lbClose" aria-label="Close">&times;</button>
+        <button class="lightbox-nav prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+        <img id="lbImage" src="" alt="">
+        <button class="lightbox-nav next" id="lbNext" aria-label="Next">&#8250;</button>
+        <div class="lightbox-counter" id="lbCounter"></div>
+      </div>
+    </div>
   </main>
   
   
   <script src='https://code.jquery.com/jquery-3.2.1.min.js' integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4='crossorigin='anonymous'></script>
-  <script src="index.js"></script>
+  
+  <script>
+    const thumbs = Array.from(document.querySelectorAll('.grid li:not(.label) img'));
+    
+    const lightbox = document.getElementById('lightbox');
+    const lbImage = document.getElementById('lbImage');
+    const lbCounter = document.getElementById('lbCounter');
+    let currentIndex = 0;
+    
+    function showImage(index) {
+      currentIndex = (index + thumbs.length) % thumbs.length;
+      const src = thumbs[currentIndex].getAttribute('src');
+      const alt = thumbs[currentIndex].getAttribute('alt') || '';
+      
+      lbImage.classList.remove('visible');
+      const img = new Image();
+      img.onload = () => {
+        lbImage.src = src;
+        lbImage.alt = alt;
+        requestAnimationFrame(() => lbImage.classList.add('visible'));
+      };
+      img.src = src;
+      
+      lbCounter.textContent = `${currentIndex + 1} / ${thumbs.length}`;
+    }
+    
+    function openLightbox(index) {
+      showImage(index);
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    
+    thumbs.forEach((img, i) => {
+      img.closest('li').addEventListener('click', () => openLightbox(i));
+    });
+    
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbPrev').addEventListener('click', () => showImage(currentIndex - 1));
+    document.getElementById('lbNext').addEventListener('click', () => showImage(currentIndex + 1));
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target.classList.contains('lightbox-stage')) closeLightbox();
+    });
+    
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showImage(currentIndex - 1);
+      if (e.key === 'ArrowRight') showImage(currentIndex + 1);
+    });
+    
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; });
+    lightbox.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(dx) > 50) dx > 0 ? showImage(currentIndex - 1) : showImage(currentIndex + 1);
+    });
+  </script>
   <!-- <script src="start.js"></script> -->
+  
   
 </body>
 </html>

@@ -28,10 +28,15 @@ main {
   padding: 10%;
 }
 
+h1 {
+  margin-top: 0;
+}
+
 h1, h2, h3 {
   font-family: 'lexend zetta', 'helvetica', 'arial';
   font-size: 5.1vw;
   font-weight: 900;
+  color: #1846c7;
 }
 
 h2 {
@@ -40,14 +45,13 @@ h2 {
 
 h3 {
   font-size: 3rem;
-  color: #2e55Be;
-  margin: 0;
+  margin: 0 0 2rem 0;
 }
 
 h4 {
-  font-size: 2.3rem;
-  color: #2e55Be;
-  margin: 2rem 0 0 0;
+  font-size: 2rem;
+  color: #1846c7;
+  margin: 2rem 0 1rem 0;
 }
 
 p, li {
@@ -87,7 +91,7 @@ nav {
 }
 
 nav a {
-  background: #2e55Be;
+  background: #1846c7;
   padding: 1rem 1.62rem;
   color: #fff;
   text-decoration: none;
@@ -98,21 +102,23 @@ nav a {
 
 nav a:hover {
   background: #fff;
-  color: #2e55Be;
+  color: #1846c7;
 }
 
 .box {
-  border: 1px solid #2e55Be;
+  border: 1px solid #1846c7;
   padding: 2rem;
   /* margin: 4rem 0; */
   display: inline-block;
 }
+
 .box h4 {
   margin-top: 0;
 }
+
 .emph {
-  border: 1px solid #2e55Be;
-  color: #2e55Be;
+  border: 1px solid #1846c7;
+  color: #1846c7;
   padding: 1rem;
   font-family: 'lexend zetta', 'helvetica', 'arial';
   width: auto;
@@ -121,7 +127,7 @@ nav a:hover {
 
 .inv {
   color: #fff;
-  background: #2e55Be;;
+  background: #1846c7;;
 }
 
 .emph span {
@@ -130,14 +136,6 @@ nav a:hover {
   color: #000;
 }
 
-
-.gridCols {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  place-items: center;
-  width: calc(100% - 3px);
-}
 
 img {
   width: 100%;
@@ -152,7 +150,7 @@ img {
   justify-content: center;
   align-items: stretch;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 6rem;
 }
 
 .flex li {
@@ -166,13 +164,13 @@ img {
   align-items: center;       /* Centers the image vertically */
   justify-content: center;   /* Centers the image horizontally */
   flex: 1.62;
-  border: 1px dashed #2e55be;
+  border: 1px dashed #1846c7;
   /* border-width: 2px 0; */
   padding: 2rem;
 }
 
 hr {
-  border: solid #2e55Be;
+  border: solid #1846c7;
   border-width: 1px 0 0 0;
   margin: 8rem 0;
 }
@@ -180,20 +178,20 @@ hr {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 4rem;
   place-items: center;
   width: calc(100% - 3px);
 }
 
 .grid li {
-  /* border: 1px dashed #2e55Be; */
+  /* border: 1px dashed #1846c7; */
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #2e55Be;
+  background: #1846c7;
 }
 
 .grid li img {
@@ -214,3 +212,95 @@ hr {
 .label h4 {
   color: #fff;
 }
+
+.grid li:not(.label) { cursor: zoom-in; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 11, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+  z-index: 1000;
+}
+
+.lightbox.open { opacity: 1; visibility: visible; }
+
+.lightbox-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 90px;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 2px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.lightbox img.visible { opacity: 1; transform: scale(1); }
+
+.lightbox-close,
+.lightbox-nav {
+  position: absolute;
+  background: none;
+  border: none;
+  color: #e8e6e1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.lightbox-close:hover, .lightbox-nav:hover { opacity: 1; }
+
+.lightbox-close { top: 20px; right: 24px; font-size: 28px; width: 44px; height: 44px; }
+
+.lightbox-nav { top: 50%; transform: translateY(-50%); width: 56px; height: 56px; font-size: 30px; }
+.lightbox-nav.prev { left: 8px; }
+.lightbox-nav.next { right: 8px; }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: #999;
+}
+
+@media (max-width: 640px) {
+  .lightbox-stage { padding: 70px 16px; }
+  .lightbox-nav { width: 44px; height: 44px; font-size: 24px; }
+  .lightbox-nav.prev { left: 0; }
+  .lightbox-nav.next { right: 0; }
+  main {
+    padding: 5%;
+  }
+  h1 {
+    margin-top: 6rem;
+  }
+  html {
+    font-size: 55%;
+  }
+  
+}
+
