@@ -301,6 +301,9 @@ hr {
   html {
     font-size: 55%;
   }
+  nav a{
+    margin: 1rem 0;
+  }
   
 }
 
