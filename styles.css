@@ -21,7 +21,7 @@ html {
 }
 
 strong {
-font-weight: 600;
+  font-weight: 600;
 }
 
 main {
@@ -35,13 +35,13 @@ h1, h2, h3 {
 }
 
 h2 {
-font-size: 2.9vw;
+  font-size: 2.9vw;
 }
 
 h3 {
   font-size: 3rem;
   color: #2e55Be;
-  margin: 3rem 0 0 0;
+  margin: 0;
 }
 
 h4 {
@@ -52,19 +52,27 @@ h4 {
 
 p, li {
   font-size: 1.9rem;
-  list-style: circle;
   margin: .5rem 0;
+  list-style: none;
 }
 
 ul {
+  padding: 0;
+}
+
+.list {
   margin: 0;
   padding: 0 0 0 2.3rem;
 }
 
-/* iframe {
+.list li {
+  list-style: circle;
+}
+
+iframe {
   width: 100%;
-  margin: 1rem 0;
-} */
+  /* margin: 1rem 0; */
+}
 
 nav {
   position: fixed;
@@ -98,7 +106,7 @@ nav a:hover {
   display: inline-block;
 }
 .box h4 {
-margin-top: 0;
+  margin-top: 0;
 }
 .emph {
   border: 1px solid #2e55Be;
@@ -109,8 +117,60 @@ margin-top: 0;
   display: inline-block;
 }
 
+.inv {
+  color: #fff;
+  background: #2e55Be;;
+}
+
 .emph span {
   font-family: 'lexend deca';
   font-weight: 400;
   color: #000;
+}
+
+
+.gridCols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  place-items: center;
+  width: calc(100% - 3px);
+}
+
+img {
+  width: 100%;
+  height: auto;              /* Allows the image to keep its natural aspect ratio */
+  max-height: 100%;          /* Prevents the image from bursting out of the column */
+  object-fit: contain;       /* Ensures the entire image is visible without cropping */
+  display: block;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.flex li {
+  min-width: 300px;
+  object-fit: cover;
+  flex: 1;
+}
+
+.imgFlex {
+  display: flex;
+  align-items: center;       /* Centers the image vertically */
+  justify-content: center;   /* Centers the image horizontally */
+  flex: 1.62;
+  border: 1px dashed #2e55be;
+  /* border-width: 2px 0; */
+  padding: 2rem;
+}
+
+hr {
+  border: solid #2e55Be;
+  border-width: 1px 0 0 0;
+  margin: 8rem 0;
 }
