@@ -179,7 +179,7 @@ hr {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 4rem;
   place-items: center;
   width: calc(100% - 3px);
@@ -193,6 +193,7 @@ hr {
   justify-content: center;
   align-items: center;
   background: #1846c7;
+  aspect-ratio: 1/1;
 }
 
 .grid li img {
@@ -207,7 +208,7 @@ hr {
   justify-content: flex-end;
   align-items: center;
   padding: 2rem;
-  border: 3rem solid #fff;
+  /* border: 3rem solid #fff; */
 }
 
 .label h4 {
@@ -311,6 +312,23 @@ hr {
   h2 {
     font-size: 3.3vw;
   }
-  
+  .grid .label {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: #fff;
+    border: 1px solid #1846c7;
+  }
+  .label h4 {
+    color: #1846c7;
+  }
+  .grid li:not(.label) { 
+    cursor: default; 
+  }
+  .grid li {
+    aspect-ratio: auto;
+  }
 }
 

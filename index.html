@@ -8,7 +8,7 @@
   <script src="https://kit.fontawesome.com/cecc6c5222.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles.css">
   <meta name="format-detection" content="address=no" />
-
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Lexend+Zetta:wght@100..900&display=swap" rel="stylesheet">
@@ -195,10 +195,10 @@
     </p>
     <img src="assets/FP.png" alt="" style="border: 1px solid #1846c7; margin: 1rem 0 4rem 0">
     
-
-      <p class="flex" style="margin: 2rem 0 4rem 0;">
-        Click images for full size versions
-      </p>
+    
+    <p class="flex" style="margin: 2rem 0 4rem 0;">
+      Click images for full size versions
+    </p>
     
     <ul class="grid">
       <li class="label">
@@ -382,6 +382,9 @@
     const lbCounter = document.getElementById('lbCounter');
     let currentIndex = 0;
     
+    // Define the desktop media query (above mobile breakpoint)
+    const isDesktop = window.matchMedia('(min-width: 641px)');
+    
     function showImage(index) {
       currentIndex = (index + thumbs.length) % thumbs.length;
       const src = thumbs[currentIndex].getAttribute('src');
@@ -400,6 +403,9 @@
     }
     
     function openLightbox(index) {
+      // Force return and do nothing if screen is 640px or smaller
+      if (!isDesktop.matches) return;
+      
       showImage(index);
       lightbox.classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -409,6 +415,13 @@
       lightbox.classList.remove('open');
       document.body.style.overflow = '';
     }
+    
+    // Automatically close lightbox if user resizes browser down to mobile width
+    isDesktop.addEventListener('change', (e) => {
+      if (!e.matches && lightbox.classList.contains('open')) {
+        closeLightbox();
+      }
+    });
     
     thumbs.forEach((img, i) => {
       img.closest('li').addEventListener('click', () => openLightbox(i));
@@ -436,8 +449,13 @@
       if (Math.abs(dx) > 50) dx > 0 ? showImage(currentIndex - 1) : showImage(currentIndex + 1);
     });
   </script>
+  
   <!-- <script src="start.js"></script> -->
+  
+  
   
   
 </body>
 </html>
+
+
